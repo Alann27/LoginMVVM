@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LoginMVVM.Views.SignUpPage">
+    <ScrollView>
+        <StackLayout Orientation="Vertical" VerticalOptions="Center">
+
+            <Image Source="inteclogo.png" WidthRequest="200" HeightRequest="200"></Image>
+            <Entry Placeholder="Name" Text="{Binding User.Name}" PlaceholderColor="Gray" TextColor="Black" Margin="20,10,20,10" x:Name="nameEntry" TabIndex="0"></Entry>
+            <Entry Placeholder="Email" Text="{Binding User.Email}" PlaceholderColor="Gray" Margin="20,10,20,10" x:Name="emailEntry" TabIndex="1"></Entry>
+            <Entry Placeholder="Password" Text="{Binding User.Password}" IsPassword="True" PlaceholderColor="Gray" Margin="20,10,20,10" x:Name="passwordEntry" TabIndex="1"></Entry>
+            <Entry Placeholder="Confirm Password" Text="{Binding ConfirmPassword}" IsPassword="True" PlaceholderColor="Gray" Margin="20,10,20,10" x:Name="confirmPasswordEntry" TabIndex="1"></Entry>
+            <Button Text="Register" x:Name="registerButton" Command="{Binding SignUpCommand}"  BackgroundColor="#e4002b" TextColor="White" Margin="20,20,20,10" TabIndex="2"></Button>
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
