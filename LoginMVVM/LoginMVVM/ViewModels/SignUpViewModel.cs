@@ -28,21 +28,17 @@ namespace LoginMVVM.ViewModels
                 if (User.Password== ConfirmPassword)
                 {
                     await AlertService.AlertAsync("INTEC App", $"Bienvenido, {User.Name}!");
-                    //await LoginAppServices.AlertAsync("INTEC App", $"Bienvenido, {User.Name}!");
 
                     await NavigationService.ModalPushNavigationAsync(new HomePage());
-                    //await LoginAppServices.GoToHomePage();
                 }
                 else
                 {
                     await AlertService.AlertAsync("Error", "Las contraseñas no coinciden, favor introducirlas nuevamente");
-                    //await LoginAppServices.AlertAsync("Error", "Las contraseñas no coinciden, favor introducirlas nuevamente");
                 }
             }
             else
             {
                 await AlertService.AlertAsync("Error", "Faltan campos por llenar, favor verifique e intente de nuevo");
-                //await LoginAppServices.AlertAsync("Error", "Faltan campos por llenar, favor verifique e intente de nuevo");
             }
         }
     }
