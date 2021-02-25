@@ -13,17 +13,11 @@ namespace LoginMVVM.ViewModels
         public IAlertService AlertService { get; }
         public INavigationService NavigationService { get; }
 
-        public LoginAppServices LoginAppServices { get; set; }
-
         protected BaseViewModel(IAlertService alertService, INavigationService navigationService)
         {
             AlertService = alertService;
             NavigationService = navigationService;
         }
 
-        //protected BaseViewModel(LoginAppServices loginAppServices)
-        //{
-        //    LoginAppServices = loginAppServices;
-        //}
     }
 }
