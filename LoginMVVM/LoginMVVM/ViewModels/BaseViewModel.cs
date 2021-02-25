@@ -8,13 +8,22 @@ namespace LoginMVVM.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        
         public event PropertyChangedEventHandler PropertyChanged;
+        public IAlertService AlertService { get; }
+        public INavigationService NavigationService { get; }
 
         public LoginAppServices LoginAppServices { get; set; }
 
-        protected BaseViewModel(LoginAppServices loginAppServices)
+        protected BaseViewModel(IAlertService alertService, INavigationService navigationService)
         {
-            LoginAppServices = loginAppServices;
+            AlertService = alertService;
+            NavigationService = navigationService;
         }
+
+        //protected BaseViewModel(LoginAppServices loginAppServices)
+        //{
+        //    LoginAppServices = loginAppServices;
+        //}
     }
 }

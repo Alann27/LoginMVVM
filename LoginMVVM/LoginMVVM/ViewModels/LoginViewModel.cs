@@ -1,5 +1,6 @@
 ﻿using LoginMVVM.Models;
 using LoginMVVM.Services;
+using LoginMVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace LoginMVVM.ViewModels
         public User User { get; set; } = new User();
         public ICommand LoginCommand { get; }
         public ICommand RegisterCommand { get; }
-        public LoginViewModel(LoginAppServices loginAppServices) : base(loginAppServices)
+        public LoginViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
         {
             LoginCommand = new Command(OnLogin);
             RegisterCommand = new Command(OnRegister);
@@ -23,19 +24,24 @@ namespace LoginMVVM.ViewModels
         {
             if (!string.IsNullOrEmpty(User.Email) && !string.IsNullOrEmpty(User.Password))
             {
-                await LoginAppServices.AlertAsync("INTEC App", $"Bienvenido, {User.Email}!");
 
-                await LoginAppServices.GoToHomePage();
+                await AlertService.AlertAsync("INTEC App", $"Bienvenido, {User.Email}!");
+                //await LoginAppServices.AlertAsync("INTEC App", $"Bienvenido, {User.Email}!");
+
+                await NavigationService.NonModalPushNavigationAsync(new HomePage());
+                //await LoginAppServices.GoToHomePage();
             }
             else
             {
-                await LoginAppServices.AlertAsync("INTEC App", "Campo Email y/o contraseña no puede estar vacío");
+                await AlertService.AlertAsync("INTEC App", "Campo Email y/o contraseña no puede estar vacío");
+                //await LoginAppServices.AlertAsync("INTEC App", "Campo Email y/o contraseña no puede estar vacío");
             }
         }
 
         private async void OnRegister()
         {
-            await LoginAppServices.GoToSignUpPage();
+            await NavigationService.ModalPushNavigationAsync(new SignUpPage());
+            //await LoginAppServices.GoToSignUpPage();
         }
     }
 }

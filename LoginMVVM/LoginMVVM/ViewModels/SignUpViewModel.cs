@@ -1,5 +1,6 @@
 ﻿using LoginMVVM.Models;
 using LoginMVVM.Services;
+using LoginMVVM.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,7 +14,7 @@ namespace LoginMVVM.ViewModels
         public User User { get; set; } = new User();
         public string ConfirmPassword { get; set; }
         public ICommand SignUpCommand { get; }
-        public SignUpViewModel(LoginAppServices loginAppServices) : base(loginAppServices)
+        public SignUpViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
         {
             SignUpCommand = new Command(OnSignUp);
         }
@@ -26,18 +27,22 @@ namespace LoginMVVM.ViewModels
 
                 if (User.Password== ConfirmPassword)
                 {
-                    await LoginAppServices.AlertAsync("INTEC App", $"Bienvenido, {User.Name}!");
+                    await AlertService.AlertAsync("INTEC App", $"Bienvenido, {User.Name}!");
+                    //await LoginAppServices.AlertAsync("INTEC App", $"Bienvenido, {User.Name}!");
 
-                    await LoginAppServices.GoToHomePage();
+                    await NavigationService.ModalPushNavigationAsync(new HomePage());
+                    //await LoginAppServices.GoToHomePage();
                 }
                 else
                 {
-                    await LoginAppServices.AlertAsync("Error", "Las contraseñas no coinciden, favor introducirlas nuevamente");
+                    await AlertService.AlertAsync("Error", "Las contraseñas no coinciden, favor introducirlas nuevamente");
+                    //await LoginAppServices.AlertAsync("Error", "Las contraseñas no coinciden, favor introducirlas nuevamente");
                 }
             }
             else
             {
-                await LoginAppServices.AlertAsync("Error", "Faltan campos por llenar, favor verifique e intente de nuevo");
+                await AlertService.AlertAsync("Error", "Faltan campos por llenar, favor verifique e intente de nuevo");
+                //await LoginAppServices.AlertAsync("Error", "Faltan campos por llenar, favor verifique e intente de nuevo");
             }
         }
     }

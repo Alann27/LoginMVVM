@@ -17,7 +17,7 @@ namespace LoginMVVM.Views
         public SignUpPage()
         {
             InitializeComponent();
-            BindingContext = new SignUpViewModel(new LoginAppServices());
+            BindingContext = new SignUpViewModel(new AlertService(), new NavigationService());
         }
     }
 }

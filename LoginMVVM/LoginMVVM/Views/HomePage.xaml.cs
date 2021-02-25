@@ -1,4 +1,5 @@
-﻿using LoginMVVM.ViewModels;
+﻿using LoginMVVM.Services;
+using LoginMVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace LoginMVVM.Views
         public HomePage()
         {
             InitializeComponent();
-            BindingContext = new HomeViewModel(new Services.LoginAppServices());
+            BindingContext = new HomeViewModel(new AlertService(), new NavigationService());
         }
     }
 }

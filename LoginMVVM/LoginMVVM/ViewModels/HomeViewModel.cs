@@ -19,7 +19,7 @@ namespace LoginMVVM.ViewModels
 
         public ICommand ChangeSelectedMenuOptionCommand { get; }
 
-        public HomeViewModel(LoginAppServices loginAppServices) : base(loginAppServices)
+        public HomeViewModel(IAlertService alertService, INavigationService navigationService) : base(alertService, navigationService)
         {
             ChangeSelectedMenuOptionCommand = new Command(OnChangeSelectedOption); 
         }

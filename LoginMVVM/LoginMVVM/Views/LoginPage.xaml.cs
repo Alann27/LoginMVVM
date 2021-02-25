@@ -1,4 +1,5 @@
 ﻿using LoginMVVM.Models;
+using LoginMVVM.Services;
 using LoginMVVM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace LoginMVVM.Views
         public LoginPage()
         {
             InitializeComponent();
-            BindingContext = new LoginViewModel(new Services.LoginAppServices());
+            BindingContext = new LoginViewModel(new AlertService(), new NavigationService());
         }
     }
 }
