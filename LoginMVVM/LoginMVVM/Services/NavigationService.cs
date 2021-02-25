@@ -10,12 +10,12 @@ namespace LoginMVVM.Services
     {
         public Task ModalPushNavigationAsync(Page page)
         {
-            return App.Current.MainPage.Navigation.PushAsync(page);
+            return App.Current.MainPage.Navigation.PushModalAsync(page);
         }
 
         public Task NonModalPushNavigationAsync(Page page)
         {
-            return App.Current.MainPage.Navigation.PushModalAsync(page);
+            return App.Current.MainPage.Navigation.PushAsync(page);
         }
     }
 }
